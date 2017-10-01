@@ -1,0 +1,4 @@
+[submodule "prod"]
+	path = prod
+	url = git@github.com:HabitChallenge/HabitChallenge.github.io.git
+	branch = master
