@@ -85,6 +85,11 @@ gulp.task('copy', function() {
   gulp.src(['node_modules/simple-line-icons/*/*'])
     .pipe(gulp.dest('prod/vendor/simple-line-icons'))
 
+  gulp.src(['img/*'])
+    .pipe(gulp.dest('prod/img'))
+
+  gulp.src(['device-mockups/**'])
+    .pipe(gulp.dest('prod/device-mockups'))
 
   gulp.src([
       'node_modules/font-awesome/**',
@@ -203,10 +208,11 @@ gulp.task('browserSync', function() {
 })
 
 // Dev task with browserSync
-gulp.task('dev', ['browserSync', 'sass', 'minify-css', 'minify-js'], function() {
+gulp.task('dev', ['browserSync', 'sass', 'minify-css', 'minify-js', 'inject-favicon-markups'], function() {
   gulp.watch('scss/*.scss', ['sass']);
   gulp.watch('css/*.css', ['minify-css']);
   gulp.watch('js/*.js', ['minify-js']);
+  gulp.watch('*.html', ['inject-favicon-markups']);
   // Reloads the browser whenever HTML or JS files change
   gulp.watch('*.html', browserSync.reload);
   gulp.watch('js/**/*.js', browserSync.reload);
