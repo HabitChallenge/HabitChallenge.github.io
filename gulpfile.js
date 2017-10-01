@@ -6,6 +6,8 @@ var cleanCSS = require('gulp-clean-css');
 var rename = require("gulp-rename");
 var uglify = require('gulp-uglify');
 var pkg = require('./package.json');
+var realFavicon = require ('gulp-real-favicon');
+var fs = require('fs');
 
 // Set the banner content
 var banner = ['/*!\n',
@@ -38,7 +40,7 @@ gulp.task('minify-css', ['sass'], function() {
     .pipe(rename({
       suffix: '.min'
     }))
-    .pipe(gulp.dest('css'))
+    .pipe(gulp.dest('prod/css'))
     .pipe(browserSync.reload({
       stream: true
     }))
@@ -54,7 +56,7 @@ gulp.task('minify-js', function() {
     .pipe(rename({
       suffix: '.min'
     }))
-    .pipe(gulp.dest('js'))
+    .pipe(gulp.dest('prod/js'))
     .pipe(browserSync.reload({
       stream: true
     }))
@@ -69,19 +71,19 @@ gulp.task('copy', function() {
       '!**/bootstrap-theme.*',
       '!**/*.map'
     ])
-    .pipe(gulp.dest('vendor/bootstrap'))
+    .pipe(gulp.dest('prod/vendor/bootstrap'))
 
   gulp.src(['node_modules/jquery/dist/jquery.js', 'node_modules/jquery/dist/jquery.min.js'])
-    .pipe(gulp.dest('vendor/jquery'))
+    .pipe(gulp.dest('prod/vendor/jquery'))
 
   gulp.src(['node_modules/popper.js/dist/umd/popper.js', 'node_modules/popper.js/dist/umd/popper.min.js'])
-    .pipe(gulp.dest('vendor/popper'))
+    .pipe(gulp.dest('prod/vendor/popper'))
 
   gulp.src(['node_modules/jquery.easing/*.js'])
-    .pipe(gulp.dest('vendor/jquery-easing'))
+    .pipe(gulp.dest('prod/vendor/jquery-easing'))
 
   gulp.src(['node_modules/simple-line-icons/*/*'])
-    .pipe(gulp.dest('vendor/simple-line-icons'))
+    .pipe(gulp.dest('prod/vendor/simple-line-icons'))
 
 
   gulp.src([
@@ -92,35 +94,10 @@ gulp.task('copy', function() {
       '!node_modules/font-awesome/*.md',
       '!node_modules/font-awesome/*.json'
     ])
-    .pipe(gulp.dest('vendor/font-awesome'))
+    .pipe(gulp.dest('prod/vendor/font-awesome'))
 })
-
-// Default task
-gulp.task('default', ['sass', 'minify-css', 'minify-js', 'copy']);
-
-// Configure the browserSync task
-gulp.task('browserSync', function() {
-  browserSync.init({
-    server: {
-      baseDir: ''
-    },
-  })
-})
-
-// Dev task with browserSync
-gulp.task('dev', ['browserSync', 'sass', 'minify-css', 'minify-js'], function() {
-  gulp.watch('scss/*.scss', ['sass']);
-  gulp.watch('css/*.css', ['minify-css']);
-  gulp.watch('js/*.js', ['minify-js']);
-  // Reloads the browser whenever HTML or JS files change
-  gulp.watch('*.html', browserSync.reload);
-  gulp.watch('js/**/*.js', browserSync.reload);
-});
 
 // FavIco
-var realFavicon = require ('gulp-real-favicon');
-var fs = require('fs');
-
 // File where the favicon markups are stored
 var FAVICON_DATA_FILE = 'faviconData.json';
 
@@ -131,7 +108,7 @@ var FAVICON_DATA_FILE = 'faviconData.json';
 gulp.task('generate-favicon', function(done) {
 	realFavicon.generateFavicon({
 		masterPicture: 'img/master-icon.png',
-		dest: 'img/icons',
+		dest: 'prod/',
 		iconsPath: '/',
 		design: {
 			ios: {
@@ -196,7 +173,7 @@ gulp.task('generate-favicon', function(done) {
 gulp.task('inject-favicon-markups', function() {
 	return gulp.src([ '*.html' ])
 		.pipe(realFavicon.injectFaviconMarkups(JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).favicon.html_code))
-		.pipe(gulp.dest('dist'));
+		.pipe(gulp.dest('prod/'));
 });
 
 // Check for updates on RealFaviconGenerator (think: Apple has just
@@ -210,4 +187,27 @@ gulp.task('check-for-favicon-update', function(done) {
 			throw err;
 		}
 	});
+});
+
+
+// Default task
+gulp.task('default', ['sass', 'minify-css', 'minify-js', 'copy', 'generate-favicon', 'inject-favicon-markups']);
+
+// Configure the browserSync task
+gulp.task('browserSync', function() {
+  browserSync.init({
+    server: {
+      baseDir: ''
+    },
+  })
+})
+
+// Dev task with browserSync
+gulp.task('dev', ['browserSync', 'sass', 'minify-css', 'minify-js'], function() {
+  gulp.watch('scss/*.scss', ['sass']);
+  gulp.watch('css/*.css', ['minify-css']);
+  gulp.watch('js/*.js', ['minify-js']);
+  // Reloads the browser whenever HTML or JS files change
+  gulp.watch('*.html', browserSync.reload);
+  gulp.watch('js/**/*.js', browserSync.reload);
 });
