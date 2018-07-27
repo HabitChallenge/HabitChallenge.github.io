@@ -1,7 +1,7 @@
 {
     "title": "New Age",
     "name": "startbootstrap-new-age",
-    "version": "4.0.0",
+    "version": "4.1.1",
     "description": "A one page app landing page HTML theme for Bootstrap.",
     "keywords": [
         "css",
@@ -38,8 +38,8 @@
         "gulp-real-favicon": "^0.3.0",
         "gulp-clean-css": "3.9.4",
         "gulp-header": "2.0.5",
-        "gulp-rename": "^1.4.0",
-        "gulp-sass": "^4.0.1",
+        "gulp-rename": "1.4.0",
+        "gulp-sass": "4.0.1",
         "gulp-uglify": "3.0.1"
     }
 }
