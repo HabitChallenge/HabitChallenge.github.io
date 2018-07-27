@@ -250,7 +250,7 @@ gulp.task('check-for-favicon-update', function(done) {
 
 
 // Default task
-gulp.task('default', ['css', 'js', 'vendor', 'sass', 'minify-css', 'minify-js', 'copy', 'generate-favicon', 'inject-favicon-markups']);
+gulp.task('default', ['css', 'js', 'vendor', 'copy', 'generate-favicon', 'inject-favicon-markups']);
 
 // Configure the browserSync task
 gulp.task('browserSync', function() {
