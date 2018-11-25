@@ -7,6 +7,24 @@
       function gtag(){dataLayer.push(arguments)};
       gtag('js', new Date());
       gtag('config', 'UA-107368016-1');
+      const ua = navigator.userAgent;
+      const isKindle = /Kindle|Silk|KFTT|KFOT|KFJWA|KFJWI|KFSOWI|KFTHWA|KFTHWI|KFAPWA|KFAPWI/i.test(ua);
+      if (isKindle) {
+        window['gtag'] && window['gtag']('event', 'toStore', {store: 'amazon'});
+        window.location = "https://www.amazon.com/gp/product/B07KVKKFXD";
+      } else {
+        const isAndroid = /Android/i.test(ua);
+        if (isAndroid) {
+          window['gtag'] && window['gtag']('event', 'toStore', {store: 'google'});
+          window.location = "https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id=org.luksza.HabitChallenge&ddl=1&pcampaignid=web_ddl_1";
+        } else {
+          const isIOS = /iPhone|iPad|iPod/i.test(ua);
+          if (isIOS) {
+            window['gtag'] && window['gtag']('event', 'toStore', {store: 'apple'});
+            window.location = "http://apple.co/2xU40sy";
+          }
+        }
+      }
     </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
