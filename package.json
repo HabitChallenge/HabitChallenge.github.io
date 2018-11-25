@@ -33,13 +33,13 @@
         "simple-line-icons": "2.4.1"
     },
     "devDependencies": {
-        "browser-sync": "2.24.6",
-        "gulp": "^3.9.1",
-        "gulp-real-favicon": "^0.3.0",
-        "gulp-clean-css": "3.9.4",
+        "browser-sync": "2.26.3",
+        "gulp": "^4.0.0",
+        "gulp-clean-css": "4.0.0",
         "gulp-header": "2.0.5",
+        "gulp-real-favicon": "^0.3.0",
         "gulp-rename": "1.4.0",
-        "gulp-sass": "4.0.1",
+        "gulp-sass": "4.0.2",
         "gulp-uglify": "3.0.1"
     }
 }
