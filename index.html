@@ -17,12 +17,6 @@
         if (isAndroid) {
           window['gtag'] && window['gtag']('event', 'toStore', {store: 'google'});
           window.location = "https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id=org.luksza.HabitChallenge&ddl=1&pcampaignid=web_ddl_1";
-        } else {
-          const isIOS = /iPhone|iPad|iPod/i.test(ua);
-          if (isIOS) {
-            window['gtag'] && window['gtag']('event', 'toStore', {store: 'apple'});
-            window.location = "http://apple.co/2xU40sy";
-          }
         }
       }
     </script>
@@ -30,6 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Habit Challenge App">
     <meta name="author" content="">
+    <meta name="apple-itunes-app" content="app-id=1266792211, affiliate-data=1000lHip">
     <title>Habit Challenge App</title>
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
