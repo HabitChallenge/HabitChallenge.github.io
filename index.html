@@ -16,8 +16,8 @@
         window['gtag'] && window['gtag']('event', 'toStore', {store: 'amazon'});
         window.location = "https://www.amazon.com/gp/product/B07KVKKFXD";
       } else {
-        const isAndroid = /Android/i.test(ua);
-        if (isAndroid) {
+        const uaNormalized = ua.toLocaleLowerCase();
+        if (uaNormalized.indexOf('android') !== -1) {
           window['gtag'] && window['gtag']('event', 'toStore', {store: 'google'});
           window.location = "https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id=org.luksza.HabitChallenge&ddl=1&pcampaignid=web_ddl_1";
         }
