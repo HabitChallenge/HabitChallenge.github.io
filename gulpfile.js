@@ -9,6 +9,7 @@ var pkg = require('./package.json');
 var realFavicon = require ('gulp-real-favicon');
 var fs = require('fs');
 var browserSync = require('browser-sync').create();
+var htmlmin = require('gulp-htmlmin');
 
 // Set the banner content
 var banner = ['/*!\n',
@@ -235,6 +236,7 @@ gulp.task('generate-favicon', function(done) {
 gulp.task('inject-favicon-markups', function() {
 	return gulp.src([ '*.html' ])
 		.pipe(realFavicon.injectFaviconMarkups(JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).favicon.html_code))
+    .pipe(htmlmin({ collapseWhitespace: true }))
 		.pipe(gulp.dest('prod/'));
 });
 
