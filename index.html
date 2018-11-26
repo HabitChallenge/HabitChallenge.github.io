@@ -258,6 +258,17 @@
       </div>
     </footer>
 
+    <script>
+    const isIOS = /iPhone|iPad|iPod/i.test(ua);
+    if (isIOS) {
+      const androidBadges = document.getElementsByClassName('android-badge');
+      for (let i = 0; i < androidBadges.length; i++) {
+        const badge = androidBadges[i];
+        badge.parentNode.removeChild(badge);
+      }
+    }
+    </script>
+
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
