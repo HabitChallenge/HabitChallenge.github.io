@@ -1,6 +1,6 @@
 /*!
  * Start Bootstrap - New Age v5.0.0 (https://startbootstrap.com/template-overviews/new-age)
- * Copyright 2013-2018 Start Bootstrap
+ * Copyright 2013-2020 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-new-age/blob/master/LICENSE)
  */
 
@@ -212,29 +212,30 @@ section.download h2 {
   margin-top: 0;
 }
 
-section.download .badges .badge-link {
+@media (min-width: 768px) {
+  section.download h2 {
+    font-size: 70px;
+  }
+}
+
+.badges .badge-link {
   display: block;
+  margin: auto 10px;
   margin-bottom: 25px;
 }
 
-section.download .badges .badge-link:last-child {
+.badges .badge-link:last-child {
   margin-bottom: 0;
 }
 
-section.download .badges .badge-link img {
+.badges .badge-link img {
   height: 60px;
 }
 
 @media (min-width: 768px) {
-  section.download .badges .badge-link {
+  .badges .badge-link {
     display: inline-block;
     margin-bottom: 0;
-  }
-}
-
-@media (min-width: 768px) {
-  section.download h2 {
-    font-size: 70px;
   }
 }
 
@@ -288,7 +289,7 @@ section.features .feature-item i {
 
 section.cta {
   position: relative;
-  padding: 250px 0;
+  padding: 100px 0;
   background-image: url("../img/bg-cta.jpg");
   background-position: center;
   background-size: cover;
